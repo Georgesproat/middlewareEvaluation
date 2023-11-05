@@ -13,9 +13,9 @@ async function fetchAndTransformData(companyId) {
       `https://raw.githubusercontent.com/MiddlewareNewZealand/evaluation-instructions/main/xml-api/${companyId}.xml`
     );
 
-    // Handle HTTP status codes
+    // Check the HTTP status code within the response
     if (xmlResponse.status === 404) {
-      return null; // Return null to indicate that the company was not found
+      throw new Error("404 Company not found");
     }
 
     // Convert XML to JSON
@@ -24,15 +24,15 @@ async function fetchAndTransformData(companyId) {
 
     // Implement transformation to match OpenAPI specification
     const transformedData = {
-      id: companyId, // Use the provided company ID
-      name: jsonData.Data.name[0], // Update to include [0]
-      description: jsonData.Data.description[0] // Update to include [0]
+      id: companyId,
+      name: jsonData.Data.name[0],
+      description: jsonData.Data.description[0]
     };
 
     // Return the transformed data
     return transformedData;
   } catch (error) {
-    throw error;
+    throw error; // Rethrow the error for further handling
   }
 }
 

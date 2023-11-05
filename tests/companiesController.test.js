@@ -9,9 +9,7 @@ app.use("/companies", companiesRoute);
 
 describe("GET /companies/:id", () => {
   // Common setup
-  beforeAll(() => {
-    // You can set up common data or state here if needed
-  });
+  beforeAll(() => {});
 
   it("responds with JSON", async () => {
     const response = await request(app).get("/companies/1");
@@ -26,10 +24,10 @@ describe("GET /companies/:id", () => {
     expect(response.body).toHaveProperty("description");
   });
 
-  it("handles non-existent company IDs with a 404", async () => {
-    const response = await request(app).get("/companies/3");
-    expect(response.status).toBe(404);
-  });
+ it("handles non-existent company IDs with a 404", async () => {
+   const response = await request(app).get("/companies/3");
+   expect(response.status).toBe(404);
+ });
 
   it("responds with a company object matching the expected structure", async () => {
     const response = await request(app).get("/companies/1");
@@ -45,6 +43,6 @@ describe("GET /companies/:id", () => {
 
   // Common teardown or cleanup
   afterAll(() => {
-    // You can perform cleanup here if needed
+    
   });
 });

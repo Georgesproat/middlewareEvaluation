@@ -8,11 +8,11 @@ async function getCompany(req, res) {
     if (jsonResponse) {
       res.status(200).json(jsonResponse);
     } else {
-      res.status(404).json({ error: "Company not found" });
+      res.status(404).json({ error: "404 Company not found" }); 
     }
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "500 Internal Server Error" });
   }
 }
 
